@@ -20,13 +20,13 @@ typedef struct movieinfo {
 	string name;
 }movieInfo[10];
 
-void createCustomer();
-void createAdmin();
-void admin();
-void customer();
+void createCustomer(void );
+void createAdmin(void );
+void admin(int );
+void customer(int );
 void orderTickets(string );
-void initMovie(movieinfo *mi, SYSTEMTIME startTime, int duration, int tickets, string name);
-void initMovieList(movieInfo*);
+void initMovie(movieInfo , SYSTEMTIME , int , int , string );
+void initMovieList(movieInfo);
 
 
 void createCustomer() {
@@ -95,65 +95,21 @@ void createAdmin() {
 	admHandle[admNum++] = pi.hProcess;
 }
 
-void admin(int ID) {
-	cout << "Please enter the password:" << endl;
-	//TODO check password
-	cout << "Dear Admin, Welcome!" << endl;
-	cout << "What do you wanna do?" << endl;
-	cout << "1: check out remaining tickets" << endl;
-	cout << "2: check out customers' advice" << endl;
-
-
-}
-
-void customer(int ID) {
-	int choice;
-	cout << "1: order tickets" << endl;
-	cout << "2: check out available movies" << endl;
-	cout << "Please input your choice:";
-	cin >> choice;
-	if (choice == 1) {
-		orderTickets("Roman Holiday");
-		getchar();
-	}
-}
-
-void orderTickets(string name){
-	HANDLE mutex = OpenSemaphore(SEMAPHORE_ALL_ACCESS, NULL, "mutex");
-	HANDLE movie = OpenSemaphore(SEMAPHORE_ALL_ACCESS, NULL, name.c_str());
-
-	cout << "Waiting in line .." << endl;
-	Sleep(1000);
-	WaitForSingleObject(mutex, INFINITE);
-	cout << "Buying ticket(s).." << endl;
-	Sleep(1000);
-	DWORD returnStatus = WaitForSingleObject(movie, 1);
-	if (returnStatus == WAIT_TIMEOUT) {
-		cout << "Sorry, tickets are all sold out!" << endl;
-	}
-	else if (returnStatus == WAIT_OBJECT_0) {
-		cout << "Congrats! You bought one ticket successfully" << endl;
-	}
-
-	ReleaseSemaphore(mutex, 1, NULL);
-
-	system("pause");
-}
-
 void initMovieList(movieInfo* mi) {
 	SYSTEMTIME st;
 	GetSystemTime(&st);
-	initMovie(mi[0], st, 90, 3, "Roman Holiday");
-	initMovie(mi[1], st, 80, 100, "Gone with wind");
+	initMovie((mi[0]), st, 90, 3, "Roman Holiday");
+	initMovie((mi[1]), st, 80, 100, "Gone with wind");
 	//init more movies
 }
 
-void initMovie(movieinfo *mi, SYSTEMTIME startTime, int duration,int tickets, string name) {
+void initMovie(movieInfo mi, SYSTEMTIME startTime, int duration,int tickets, string name) {
 	mi->duration = duration;
 	mi->name = name;
 	mi->tickets = tickets;
 	CreateSemaphore(NULL, tickets, tickets, name.c_str());
 }
+
 int main(int argc, char** argv) {
 
 	if (argc > 1 && strcmp(argv[1], "customer") == 0) {
