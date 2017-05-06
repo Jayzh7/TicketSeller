@@ -12,3 +12,4 @@ void admin(int ID) {
 	cout << "2: check out customers' advice" << endl;
 
 }
+

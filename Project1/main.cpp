@@ -1,33 +1,13 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include<iostream>
 #include<Windows.h>
-#define MAX_CUSTOMER_NUM 1000
-#define MAX_ADMIN_NUM 10
-#define MAX_MOVIE_NUM 6
-#define MAX_PLAY_TIME 10
+#include "head.h"
 using namespace std;
 
 HANDLE cusHandle[MAX_CUSTOMER_NUM];
 HANDLE admHandle[MAX_ADMIN_NUM];
 int cusNum = 0;
 int admNum = 0;
-
-typedef struct movieinfo {
-	SYSTEMTIME startTime[MAX_PLAY_TIME];
-	SYSTEMTIME endTime[MAX_PLAY_TIME];
-	int duration; // minutes
-	int tickets;  //remaining tickets 
-	string name;
-}movieInfo[10];
-
-void createCustomer(void );
-void createAdmin(void );
-void admin(int );
-void customer(int );
-void orderTickets(string );
-void initMovie(movieInfo , SYSTEMTIME , int , int , string );
-void initMovieList(movieInfo);
-
 
 void createCustomer() {
 	TCHAR szFilename[MAX_PATH];
@@ -60,7 +40,6 @@ void createCustomer() {
 	}
 	cusHandle[cusNum++] = pi.hProcess;
 }
-
 
 
 void createAdmin() {
