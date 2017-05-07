@@ -77,15 +77,15 @@ void createAdmin() {
 void initMovieList(movieInfo* mi) {
 	SYSTEMTIME st;
 	GetSystemTime(&st);
-	initMovie((mi[0]), st, 90, 3, "Roman Holiday");
-	initMovie((mi[1]), st, 80, 100, "Gone with wind");
+	initMovie((mi[0]), st, 90, 3, "ÂÞÂí¼ÙÈÕ");
+	initMovie((mi[1]), st, 80, 100, "Æ®");
 	//init more movies
 }
 
 void initMovie(movieInfo mi, SYSTEMTIME startTime, int duration,int tickets, string name) {
 	mi->duration = duration;
 	mi->name = name;
-	mi->tickets = tickets;
+	mi->ttlTickets[0] = tickets;
 	CreateSemaphore(NULL, tickets, tickets, name.c_str());
 }
 
@@ -104,7 +104,7 @@ int main(int argc, char** argv) {
 			NULL,
 			PAGE_READWRITE,
 			0,
-			sizeof(sizeof(movieInfo)),
+			sizeof(movieInfo),
 			"movie");
 
 		LPVOID pData = MapViewOfFile(
