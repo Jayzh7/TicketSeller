@@ -122,6 +122,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="admin.cpp" />
+    <ClCompile Include="C:\Users\Jay\Desktop\黄铮杰组实验六\myCopy.cpp" />
     <ClCompile Include="customer.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>

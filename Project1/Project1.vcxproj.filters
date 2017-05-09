@@ -24,6 +24,9 @@
     <ClCompile Include="admin.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="C:\Users\Jay\Desktop\黄铮杰组实验六\myCopy.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="head.h">
